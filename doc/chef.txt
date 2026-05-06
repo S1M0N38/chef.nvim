@@ -1,10 +1,11 @@
 ================================================================================
-INTRODUCTION                                                       *chef*
+INTRODUCTION                                                           *chef*
 
 chef.nvim — Suggestions for your next meal
 
-<!-- TODO: Add a brief introduction to your plugin. Explain what it does
-and link to relevant resources. -->
+When you can't decide what to eat, let Neovim choose for you. `:Chef` picks a
+random food ASCII art from a curated collection and displays it in a floating
+terminal window. Simple, fun, and zero configuration.
 
 Links:
 - Changelog: https://github.com/S1M0N38/chef.nvim/blob/main/CHANGELOG.md
@@ -12,27 +13,21 @@ Links:
 
 Table of contents:
 
-1. FEATURES: What this plugin provides.                       |chef-features|
-2. REQUIREMENTS: Plugin dependencies and setup.            |chef-requirements|
-3. INSTALLATION: How to install and use the plugin.         |chef-installation|
-4. CONFIGURATION: Available options and their defaults.          |chef-config|
-5. COMMANDS: Commands provided by the plugin.                  |chef-commands|
-6. API: Exposed functions and development interfaces.              |chef-api|
-7. DEVELOPMENT: Testing, building, and release workflows.    |chef-development|
-8. TROUBLESHOOTING: Common issues and solutions.         |chef-troubleshooting|
+1. REQUIREMENTS: Plugin dependencies and setup.                 |chef-requirements|
+2. INSTALLATION: How to install the plugin.                      |chef-installation|
+3. COMMANDS: Commands provided by the plugin.                      |chef-commands|
+4. API: Exposed functions and development interfaces.                  |chef-api|
+5. DEVELOPMENT: Testing, building, and release workflows.      |chef-development|
+6. TROUBLESHOOTING: Common issues and solutions.             |chef-troubleshooting|
 
 ================================================================================
-FEATURES                                                        *chef-features*
+REQUIREMENTS                                                   *chef-requirements*
 
-<!-- TODO: Describe the main features of your plugin. -->
-
-================================================================================
-REQUIREMENTS                                                *chef-requirements*
-
-<!-- TODO: List the requirements for your plugin. -->
+- Neovim >= 0.12.2
+- curl (https://curl.se/) for fetching ASCII art from the network
 
 ================================================================================
-INSTALLATION                                                *chef-installation*
+INSTALLATION                                                   *chef-installation*
 
 Install using [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -44,31 +39,53 @@ Install using [lazy.nvim](https://github.com/folke/lazy.nvim):
   }
 <
 
-================================================================================
-CONFIGURATION                                                     *chef-config*
+- `"S1M0N38/chef.nvim"`: The plugin's GitHub repository.
+- `lazy = false`: Always load — the plugin is tiny and there's no benefit to
+  lazy-loading.
+- `opts = {}`: No configuration options. Passed to |chef.setup()|.
 
-<!-- TODO: Document available configuration options. -->
-
-                                                                 *chef.setup()*
-chef.setup({opts}) ~
-  Set up the plugin with the given options.
+For development, see |chef-development|.
 
 ================================================================================
-COMMANDS                                                        *chef-commands*
-
+COMMANDS                                                          *chef-commands*
+                                                                      *:Chef*
 :Chef ~
-  Show a floating window with an ASCII art meal suggestion.
+  Fetch a random food ASCII art and display it in a centered floating
+  terminal window. Each call picks a different image from a collection of
+  meals: burger, pizza, taco, coffee, and more.
+  Press `q` or `<Esc>` to close the window.
 
 :checkhealth chef ~
-  Run health checks to verify chef.nvim setup and configuration.
+  Run health checks to verify chef.nvim setup. Validates:
+  - `curl` is installed and available in `$PATH`
 
 ================================================================================
 API                                                                  *chef-api*
 
-<!-- TODO: Document the public API. -->
+chef.nvim exposes a minimal Lua API:
+
+                                                                 *chef.setup()*
+chef.setup({opts}) ~
+  Setup function. Called automatically by plugin managers via `opts`.
+  Currently a no-op — the plugin has no configuration options.
+
+  Parameters: ~
+    {opts} (`table?`) Unused. Reserved for future configuration.
+
+                                                                *chef.serve()*
+chef.serve() ~
+  Fetch a random ASCII art and display it in a floating window.
+  This is the function behind the |:Chef| command.
+
+  On fetch failure, an error notification is shown with the title
+  "chef.nvim".
 
 ================================================================================
-DEVELOPMENT                                                  *chef-development*
+DEVELOPMENT                                                   *chef-development*
+
+chef.nvim includes a development workflow for plugin creation:
+
+Testing: ~
 
 Run tests using mini.test via lazy.minit:
 >bash
@@ -76,10 +93,10 @@ Run tests using mini.test via lazy.minit:
   make test
 
   # Run a single test file
-  make test-one MODULE=chef
+  make test-one MODULE=ascii
 
   # Run explicit file
-  nvim -l tests/minit.lua --minitest tests/chef_spec.lua
+  nvim -l tests/minit.lua --minitest tests/ascii_spec.lua
 <
 
 Health Checks: ~
@@ -121,21 +138,20 @@ Use conventional commit format for automatic versioning:
 - `BREAKING CHANGE:` for breaking changes (major version bump)
 
 ================================================================================
-TROUBLESHOOTING                                          *chef-troubleshooting*
+TROUBLESHOOTING                                           *chef-troubleshooting*
 
 First, run the health check to identify issues:
 >vim
   :checkhealth chef
 <
 
-If you encounter problems, follow these steps to reproduce the issue
-in a clean environment:
+No ASCII art appears: ~
+- Check your internet connection
+- Verify `curl` is installed: `which curl`
+- Try fetching manually: `curl -L https://git.io/coffee`
 
-1. Clone chef.nvim and cd into the directory
-2. Run `nvim -u repro/repro.lua`
-3. Run `:checkhealth chef`
-4. Try to reproduce the issue
-5. Report the repro.lua and any error messages
+Window closes immediately: ~
+- Ensure no other plugin or mapping overrides `q` or `<Esc>` in normal mode
 
 ================================================================================
 vim:tw=78:ts=8:et:ft=help:norl:

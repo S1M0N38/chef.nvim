@@ -19,11 +19,12 @@ ______________________________________________________________________
 
 ## 💡 Motivation
 
-<!-- TODO: describe what problem your plugin solves and why it exists -->
+When you can't decide what to eat, let Neovim choose for you. `:Chef` picks a random food ASCII art from a curated collection and displays it in a floating terminal window. Simple, fun, and zero configuration.
 
 ## ⚡ Requirements
 
-<!-- TODO: list your plugin's requirements (Neovim version, external tools, etc.) -->
+- **[Neovim](https://github.com/neovim/neovim)** ≥ 0.12.2
+- **[curl](https://curl.se/)** — for fetching ASCII art from the network
 
 ## 📦 Installation
 
@@ -41,4 +42,14 @@ For development, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## 🚀 Usage
 
-<!-- TODO: add usage examples, configuration snippets, and screenshots -->
+Run the command:
+
+```
+:Chef
+```
+
+A floating window appears with a random food ASCII art — burger, pizza, taco, coffee, and more. Press `q` or `<Esc>` to close.
+
+Each call picks a different image, so keep running `:Chef` until you find something appetizing!
+
+Get started by reading the comprehensive documentation with [`:help chef`](https://github.com/S1M0N38/chef.nvim/blob/main/doc/chef.txt).
