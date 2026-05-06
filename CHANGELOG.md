@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/S1M0N38/chef.nvim/compare/v1.0.1...v1.0.2) (2026-05-06)
+
+
+### Bug Fixes
+
+* **ci:** split release workflow into GitHub and LuaRocks ([4fab75b](https://github.com/S1M0N38/chef.nvim/commit/4fab75ba0ab68e7910d04b7edb19afd2e507ad45))
+
 ## [1.0.1](https://github.com/S1M0N38/chef.nvim/compare/v1.0.0...v1.0.1) (2026-05-06)
 
 
