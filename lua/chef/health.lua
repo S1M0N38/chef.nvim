@@ -1,35 +1,15 @@
----@class Base.Health
+---@class Chef.Health
 local M = {}
-
----Validate that config values have expected types
-local function validate_opts_table()
-  local opts = require("chef.config")
-
-  local ok, err = pcall(function()
-    vim.validate({
-      name = { opts.name, "string" },
-      --- validate other options here...
-    })
-  end)
-
-  if not ok then
-    vim.health.error("Invalid setup options: " .. err)
-  else
-    vim.health.ok("opts are correctly set")
-  end
-end
 
 ---Health check called by `:checkhealth chef`
 function M.check()
   vim.health.start("chef.nvim")
 
-  if require("chef").did_setup then
-    vim.health.ok("setup() was called")
+  if vim.fn.executable("curl") == 1 then
+    vim.health.ok("curl is installed")
   else
-    vim.health.error("setup() was not called. Call require('chef').setup({}) in your config.")
+    vim.health.error("curl is not installed. chef.nvim requires curl to fetch ASCII art.")
   end
-
-  validate_opts_table()
 end
 
 return M

@@ -1,13 +1,12 @@
----@class Base.Util
+---@class Chef.Util
 local M = {}
 
----Send a notification with plugin title, scheduled to avoid fast-event issues
----@param msg string|table message to display
+---Send a notification with plugin title
+---@param msg string message to display
 ---@param level integer vim.log.levels value
 function M.notify(msg, level)
-  msg = type(msg) == "table" and table.concat(msg --[[@as table]], "\n") or msg --[[@as string]]
   vim.schedule(function()
-    vim.notify(msg --[[@as string]], level or vim.log.levels.INFO, { title = "chef.nvim" })
+    vim.notify(msg, level or vim.log.levels.INFO, { title = "chef.nvim" })
   end)
 end
 

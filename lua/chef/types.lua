@@ -4,37 +4,30 @@
 
 -- lua/chef/init.lua -----------------------------------------------------------
 
----@class Base.Plugin
----@field did_setup boolean whether setup() has been called
----@field setup fun(opts?: Base.UserOptions) setup the plugin with user options
----@field hello fun(): string Say hello to the user using configured name
----@field bye fun(): string Say goodbye to the user using configured name
+---@class Chef.Plugin
+---@field setup fun(opts?: table) setup the plugin (no-op, for compatibility)
+---@field serve fun() fetch random ASCII art and show in floating window
 
--- lua/chef/config.lua ---------------------------------------------------------
+-- lua/chef/ascii.lua ----------------------------------------------------------
 
----@class Base.Config
----@field augroup integer augroup created at module load
----@field ns integer namespace created at module load
----@field setup fun(opts?: Base.UserOptions) setup the plugin configuration
+---@class Chef.Ascii
+---@field random_url fun(): string pick a random ASCII art URL
+---@field fetch fun(url: string): string? fetch ASCII art via curl
 
----@class Base.UserOptions
----@field name? string The name of the user to greet (optional)
+-- lua/chef/float.lua ----------------------------------------------------------
 
----@class Base.DefaultOptions
----@field name string The default name of the user to greet
-
----@class Base.Options
----@field name string The name of the user to greet (merged from user/default options)
+---@class Chef.Float
+---@field open fun(content: string) open floating terminal with content
 
 -- lua/chef/util.lua -----------------------------------------------------------
 
----@class Base.Util
----@field notify fun(msg: string|table, level?: integer) send notification with plugin title
+---@class Chef.Util
+---@field notify fun(msg: string, level?: integer) send notification with plugin title
 ---@field info fun(msg: string) send info notification
 ---@field warn fun(msg: string) send warning notification
 ---@field error fun(msg: string) send error notification
 
 -- lua/chef/health.lua ---------------------------------------------------------
 
----@class Base.Health
+---@class Chef.Health
 ---@field check fun() perform health check for the plugin
