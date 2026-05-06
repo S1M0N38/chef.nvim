@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/S1M0N38/chef.nvim/compare/v1.0.0...v1.0.1) (2026-05-06)
+
+
+### Bug Fixes
+
+* **release:** pass LuaRocks API key via env variable ([1981518](https://github.com/S1M0N38/chef.nvim/commit/1981518a8d423bd8666873432660be59eec9d0d5))
+
 ## 1.0.0 (2026-05-06)
 
 
