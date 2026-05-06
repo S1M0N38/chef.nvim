@@ -26,5 +26,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: nvim-neorocks/luarocks-tag-release@v7
-        with:
-          luarocks_api_key: ${{ secrets.LUAROCKS_API_KEY }}
+        env:
+          LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
