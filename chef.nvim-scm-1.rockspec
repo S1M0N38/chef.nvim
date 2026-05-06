@@ -8,12 +8,13 @@ local user = "S1M0N38"
 package = "chef.nvim"
 
 description = {
-	summary = "Modern template for Neovim plugin development",
+	summary = "Suggestions for your next meal",
 	detailed = [[
-chef.nvim is a simple template for Neovim plugin development that provides
-best practices, testing setup, type definitions, and automated workflows.
+chef.nvim is a fun little plugin that suggests what to cook next. Run :Chef
+and a floating window appears with an ASCII art meal suggestion — because
+even developers need culinary inspiration.
   ]],
-	labels = { "neovim", "template", "plugin", "lua", "testing", "mini-test" },
+	labels = { "neovim", "plugin", "lua" },
 	homepage = "https://github.com/" .. user .. "/" .. package,
 	license = "MIT",
 }
