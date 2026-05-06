@@ -17,6 +17,9 @@
 
 ______________________________________________________________________
 
+> [!NOTE]
+> This is a test plugin developed to validate the coding-agent integration in [S1M0N38/base.nvim](https://github.com/S1M0N38/base.nvim). It serves no practical purpose and is not intended for general use — it exists solely to exercise the `base.nvim` template end-to-end.
+
 ## 💡 Motivation
 
 When you can't decide what to eat, let Neovim choose for you. `:Chef` picks a random food ASCII art from a curated collection and displays it in a floating terminal window. Simple, fun, and zero configuration.
