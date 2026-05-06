@@ -1,28 +1,28 @@
 ---@module 'luassert'
 
-local health = require("base.health")
-local base = require("base")
+local health = require("chef.health")
+local chef = require("chef")
 
 describe("health check", function()
   it("runs with default config without errors", function()
-    base.did_setup = false
-    base.setup({})
+    chef.did_setup = false
+    chef.setup({})
     assert.has_no.errors(function()
       health.check()
     end)
   end)
 
   it("runs with custom config without errors", function()
-    base.did_setup = false
-    base.setup({ name = "Test User" })
+    chef.did_setup = false
+    chef.setup({ name = "Test User" })
     assert.has_no.errors(function()
       health.check()
     end)
   end)
 
   it("handles invalid config gracefully", function()
-    base.did_setup = false
-    base.setup({ name = 123 })
+    chef.did_setup = false
+    chef.setup({ name = 123 })
     assert.has_no.errors(function()
       health.check()
     end)
@@ -30,7 +30,7 @@ describe("health check", function()
 
   it("reports error when setup() was not called", function()
     -- Create a fresh health module to test without setup
-    base.did_setup = false
+    chef.did_setup = false
     -- Don't call setup — health should report the issue
     assert.has_no.errors(function()
       health.check()

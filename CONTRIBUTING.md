@@ -1,10 +1,10 @@
-# Contributing to base.nvim
+# Contributing to chef.nvim
 
-Thank you for your interest in contributing to base.nvim! This template aims to provide a good foundation for Neovim plugin development.
+Thank you for your interest in contributing to chef.nvim! This template aims to provide a good foundation for Neovim plugin development.
 
 ## Getting Started
 
-1. **Read the documentation**: Start with the [README](README.md) and comprehensive [help documentation](doc/base.txt)
+1. **Read the documentation**: Start with the [README](README.md) and comprehensive [help documentation](doc/chef.txt)
 2. **Set up your environment**: Clone the repo and install the dev dependencies (see below)
 3. **Test your setup**: Run `make check` to verify everything works
 
@@ -21,8 +21,8 @@ Thank you for your interest in contributing to base.nvim! This template aims to 
 ### Clone and verify
 
 ```bash
-git clone https://github.com/S1M0N38/base.nvim.git
-cd base.nvim
+git clone https://github.com/S1M0N38/chef.nvim.git
+cd chef.nvim
 make check
 ```
 
@@ -33,7 +33,7 @@ Tests auto-install their dependencies ([mini.test](https://github.com/echasnovsk
 | Target | Description |
 |--------|-------------|
 | `make test` | Run all tests |
-| `make test-one MODULE=base` | Run a single test file (`tests/base_spec.lua`) |
+| `make test-one MODULE=chef` | Run a single test file (`tests/chef_spec.lua`) |
 | `make lint` | Check formatting with StyLua (`--check`) |
 | `make format` | Auto-format Lua files with StyLua |
 | `make check` | Run lint + test |
@@ -48,7 +48,7 @@ Tests use [mini.test](https://github.com/echasnovski/mini.test) managed by [lazy
 ```
 tests/
 ├── minit.lua         # Bootstrap entry point (lazy.minit)
-├── base_spec.lua     # Plugin logic tests
+├── chef_spec.lua     # Plugin logic tests
 └── health_spec.lua   # Health check tests
 ```
 
@@ -57,12 +57,12 @@ tests/
 ```lua
 ---@module 'luassert'
 
-local base = require("base")
-base.setup({})
+local chef = require("chef")
+chef.setup({})
 
 describe("default options", function()
   it("hello() returns greeting with default name", function()
-    assert.are.equal("Hello John Doe", base.hello())
+    assert.are.equal("Hello John Doe", chef.hello())
   end)
 end)
 ```
@@ -71,8 +71,8 @@ end)
 
 ```bash
 make test                          # All tests
-make test-one MODULE=base          # Only tests/base_spec.lua
-nvim -l tests/minit.lua --minitest tests/base_spec.lua  # Explicit file
+make test-one MODULE=chef          # Only tests/chef_spec.lua
+nvim -l tests/minit.lua --minitest tests/chef_spec.lua  # Explicit file
 ```
 
 ## GitHub Workflow
@@ -83,8 +83,8 @@ nvim -l tests/minit.lua --minitest tests/base_spec.lua  # Explicit file
 2. Clone your fork locally:
 
 ```bash
-git clone https://github.com/your-username/base.nvim.git
-cd base.nvim
+git clone https://github.com/your-username/chef.nvim.git
+cd chef.nvim
 ```
 
 ### Create a Branch
@@ -98,7 +98,7 @@ git checkout -b fix/specific-bug-description
 ### Make Your Changes
 
 1. **Write tests**: Add or update tests in the `tests/` directory
-2. **Update documentation**: Update `doc/base.txt` and README if needed
+2. **Update documentation**: Update `doc/chef.txt` and README if needed
 3. **Follow coding standards**: Run `make format` before committing
 
 ### Commit and Push
@@ -148,4 +148,4 @@ When reporting bugs, please:
 - **Keep it simple**: Avoid adding complex dependencies or patterns
 - **Document everything**: Both code comments and help documentation
 
-Thank you for helping make base.nvim better! 🚀
+Thank you for helping make chef.nvim better! 🚀
